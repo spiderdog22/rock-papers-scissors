@@ -3,14 +3,14 @@ console.log('Hello world!')
 let computerPoints = 0
 let humanPoints = 0
 
-let getComputerChoice = () => {
+const getComputerChoice = () => {
     const options = [ 'rock', 'paper', 'scissors' ]
     let randomNumber = Math.random()
     let module = (randomNumber * 100) % 3
     return options[Math.trunc(module)]
 }
 
-let getHumanChoice = () => {
+const getHumanChoice = () => {
     let answer = 'no-choice'
 
     do {
@@ -20,11 +20,11 @@ let getHumanChoice = () => {
     return answer
 }
 
-let capitalize = (str) => {
+const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.substring(1)
 }
 
-let playRound = (humanChoice, computerChoice) => {
+const playRound = (humanChoice, computerChoice) => {
     if (humanChoice === computerChoice) {
         return 'You tie!'
     }
