@@ -57,7 +57,18 @@ const playRound = (humanChoice, computerChoice) => {
 
 }
 
-let compCh = getComputerChoice()
-let humanCh = getHumanChoice()
+const playGame = () => {
+    const numRounds = 5;
 
-console.log(playRound(humanCh, compCh))
+    let round = 0
+    while (round < numRounds)
+    {
+        let computerChoice = getComputerChoice()
+        let humanChoice = getHumanChoice()
+
+        let result = playRound(humanChoice, computerChoice)
+        console.log(result)
+
+        round++;
+    }
+}
