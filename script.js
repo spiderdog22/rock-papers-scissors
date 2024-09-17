@@ -71,4 +71,8 @@ const playGame = () => {
 
         round++;
     }
+
+    console.log('Final results!')
+    console.log(` - your points: ${humanPoints}`)
+    console.log(` - computer points: ${computerPoints}`)
 }
