@@ -57,9 +57,15 @@ const playRound = (humanChoice, computerChoice) => {
 
 }
 
+const resetGame = () => {
+    humanPoints = 0
+    computerChoice = 0
+}
+
 const playGame = () => {
     const numRounds = 5;
 
+    resetGame()
     let round = 0
     while (round < numRounds)
     {
