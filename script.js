@@ -46,10 +46,12 @@ let playRound = (humanChoice, computerChoice) => {
     }
 
     if (matchStatus === 'You won!') {
+        humanPoints++;
         return `${matchStatus} ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`
     }
 
     if (matchStatus === 'You lose!') {
+        computerPoints++;
         return `${matchStatus} ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`
     }
 
