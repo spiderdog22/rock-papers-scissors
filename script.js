@@ -66,16 +66,13 @@ const playGame = () => {
     const numRounds = 5;
 
     resetGame()
-    let round = 0
-    while (round < numRounds)
+    for (let i = 0; i < numRounds; i++)
     {
         let computerChoice = getComputerChoice()
         let humanChoice = getHumanChoice()
 
         let result = playRound(humanChoice, computerChoice)
         console.log(result)
-
-        round++;
     }
 
     console.log('Final results!')
