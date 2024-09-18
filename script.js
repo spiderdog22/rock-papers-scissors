@@ -1,21 +1,8 @@
-let computerPoints = 0
-let humanPoints = 0
-
 const getComputerChoice = () => {
     const options = [ 'rock', 'paper', 'scissors' ]
     let randomNumber = Math.random()
     let module = (randomNumber * 100) % 3
     return options[Math.trunc(module)]
-}
-
-const getHumanChoice = () => {
-    let answer = 'no-choice'
-
-    do {
-        answer = prompt('Rock, paper, scissors. Enter a value: ', 0).toLowerCase()
-    } while( answer != 'rock' && answer != 'paper' && answer != 'scissors' )
-
-    return answer
 }
 
 const capitalize = (str) => {
@@ -24,56 +11,109 @@ const capitalize = (str) => {
 
 const playRound = (humanChoice, computerChoice) => {
     if (humanChoice === computerChoice) {
-        return 'You tie!'
+        return 'you tie';
     }
-
-    let matchStatus = 'noone'
 
     // Win cases
     if (humanChoice === 'rock' && computerChoice === 'scissors' ||
         humanChoice === 'paper' && computerChoice === 'rock' ||
         humanChoice === 'scissors' && computerChoice === 'paper') {
-        matchStatus = 'You won!'
+        matchStatus = 'you win';
     }
 
     // Lose cases
     if (humanChoice === 'rock' && computerChoice === 'paper' ||
         humanChoice === 'paper' && computerChoice === 'scissors' ||
         humanChoice === 'scissors' && computerChoice === 'rock') {
-        matchStatus = 'You lose!'
+        matchStatus = 'you lose';
     }
 
-    if (matchStatus === 'You won!') {
-        humanPoints++;
-        return `${matchStatus} ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`
-    }
-
-    if (matchStatus === 'You lose!') {
-        computerPoints++;
-        return `${matchStatus} ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`
-    }
-
+    return matchStatus;
 }
 
-const resetGame = () => {
+const getRoundMessage = (result, humanChoice, computerChoice) => {
+    if (result === 'you tie')
+        return `${capitalize(result)}!`;
+
+    if (result === 'you win')
+        return `${capitalize(result)}! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`
+
+    if (result === 'you lose')
+        return `${capitalize(result)}! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`
+
+    return 'Unknown result!';
+};
+
+let startButton = document.querySelector('#start-button');
+let rockButton = document.querySelector('#ctrl-rock');
+let paperButton = document.querySelector('#ctrl-paper');
+let scissorsButton = document.querySelector('#ctrl-scissors');
+let gameStatusMsg = document.querySelector('.gcs-game-status');
+let humanPointsElement = document.querySelector('#human-points');
+let computerPointsElement = document.querySelector('#computer-points');
+
+let gameStatus = 'idle';
+
+const startButtonCallback = () => {
+    if (gameStatus === 'idle') {
+        setUpGameGUI();
+        gameStatus = 'playing';
+        gameStatusMsg.textContent = 'Waiting for human...';
+    } else if (gameStatus === 'playing') {
+        resetGameGui();
+        resetPoints();
+        gameStatus = 'idle';
+    }
+};
+
+let computerPoints = 0
+let humanPoints = 0
+const MAX_POINTS = 4;
+
+const resetPoints = () => {
     humanPoints = 0
-    computerChoice = 0
+    computerPoints = 0
 }
 
-const playGame = () => {
-    const numRounds = 5;
+const processRound = (evt) => {
+    let humanChoice = evt.target.textContent.toLowerCase();
+    let computerChoice = getComputerChoice();
+    let result = playRound(humanChoice, computerChoice);
 
-    resetGame()
-    for (let i = 0; i < numRounds; i++)
-    {
-        let computerChoice = getComputerChoice()
-        let humanChoice = getHumanChoice()
+    if (result === 'you win')
+        humanPoints++;
+    else if (result === 'you lose')
+        computerPoints++;
+    
+    gameStatusMsg.textContent = getRoundMessage(result, humanChoice, computerChoice);
+    setGuiPoints(humanPoints, computerPoints);
 
-        let result = playRound(humanChoice, computerChoice)
-        console.log(result)
+    if (humanPoints > MAX_POINTS || computerPoints > MAX_POINTS) {
+        startButton.dispatchEvent(new Event('click'));
     }
+};
 
-    console.log('Final results!')
-    console.log(` - your points: ${humanPoints}`)
-    console.log(` - computer points: ${computerPoints}`)
-}
+startButton.addEventListener('click', startButtonCallback);
+rockButton.addEventListener('click', processRound);
+paperButton.addEventListener('click', processRound);
+scissorsButton.addEventListener('click', processRound);
+
+const setUpGameGUI = () => {
+    startButton.textContent = 'Reset';
+    rockButton.disabled = false;
+    paperButton.disabled = false;
+    scissorsButton.disabled = false;
+};
+
+const resetGameGui = () => {
+    startButton.textContent = 'PLAY GAME';
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorsButton.disabled = true;
+    setGuiPoints(0, 0);
+};
+
+const setGuiPoints = (humanPoints, computerPoints) => {
+    humanPointsElement.textContent = humanPoints;
+    computerPointsElement.textContent = computerPoints;
+};
