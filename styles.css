@@ -10,8 +10,6 @@ body {
 }
 
 .container {
-    outline: red solid 1px;
-
     padding: 10px;
     margin: auto;
     width: 65vw;
@@ -22,7 +20,6 @@ body {
 }
 
 .title {
-    outline: green solid 1px;
     color: #ed1c24;
     font-weight: 900;
     font-size: 36px;
@@ -31,7 +28,6 @@ body {
 }
 
 .description {
-    outline: darkcyan solid 1px;
     color: #ed1c24;
     font-size: 18px;
     font-weight: 600;
@@ -40,7 +36,6 @@ body {
 }
 
 #start-button {
-    outline: blue solid 1px;
     border-style: none;
 
     background-color: white;
@@ -63,8 +58,6 @@ body {
 }
 
 .game-container {
-    outline: purple solid 1px;
-
     background-color: #ed1c24;
     color: white;
     border-radius: 20px;
@@ -79,13 +72,14 @@ body {
 
     box-sizing: border-box;
     padding: 10px;
+
+    user-select: none;
 }
 
 .gc-control {
-    outline: green solid 1px;
     padding: 20px 0;
     margin-bottom: 10px;
-    width: 100%;
+    width: 90%;
 
     display: flex;
     justify-content: center;
@@ -105,8 +99,6 @@ body {
     background-color: #ed1c24;
     color: white;
     font-size: 24px;
-
-    user-select: none;
 }
 
 .gc-control button:hover {
@@ -115,7 +107,6 @@ body {
 }
 
 .gc-status {
-    outline: fuchsia solid 1px;
     height: 100%;
 
     display: flex;
@@ -137,14 +128,12 @@ body {
     justify-content: center;
     gap: 70px;
 
-    outline: green solid 1px;
-
-    margin-top: auto;
+    margin-top: 20px;
+    justify-self: end;
     font-size: 24px;
 }
 
 .gcs-points span {
-    outline: darkblue solid 1px;
     padding-left: 20px;
 }
 
