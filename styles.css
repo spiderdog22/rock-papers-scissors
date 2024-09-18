@@ -101,9 +101,14 @@ body {
     font-size: 24px;
 }
 
-.gc-control button:hover {
+.gc-control button:hover:not([disabled]) {
     color: #ed1c24;
     background-color: white;
+}
+
+.gc-control button:disabled {
+    color: wheat;
+    border-color: wheat;
 }
 
 .gc-status {
