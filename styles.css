@@ -53,8 +53,6 @@ body {
 #start-button:hover {
     background-color: #ed1c24;
     color: white;
-
-    font-weight: bold;
 }
 
 .game-container {
