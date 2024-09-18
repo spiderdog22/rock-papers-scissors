@@ -2,6 +2,11 @@ body {
     margin: 0;
 
     font-family: 'Inria Sans', Verdana, Geneva, Tahoma, sans-serif;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .container {
@@ -9,6 +14,7 @@ body {
 
     margin: auto;
     width: 65vw;
+
 }
 
 footer {
