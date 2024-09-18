@@ -12,9 +12,65 @@ body {
 .container {
     outline: red solid 1px;
 
+    padding: 10px;
     margin: auto;
     width: 65vw;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.title {
+    outline: green solid 1px;
+    color: #ed1c24;
+    font-weight: 900;
+    font-size: 48px;
+
+    user-select: none;
+}
+
+.description {
+    outline: darkcyan solid 1px;
+    color: #ed1c24;
+    font-size: 18px;
+    font-weight: 600;
+
+    user-select: none;
+}
+
+#start-button {
+    outline: blue solid 1px;
+    border-style: none;
+
+    background-color: white;
+    color: #ed1c24;
+
+    font-size: 24px;
+    border: #ed1c24 solid 3px;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin: 20px 0;
+
+    user-select: none;
+}
+
+#start-button:hover {
+    background-color: #ed1c24;
+    color: white;
+
+    font-weight: bold;
+}
+
+.game-container {
+    outline: purple solid 1px;
+
+    background-color: #ed1c24;
+    color: white;
+    border-radius: 20px;
+
+    width: 700px;
+    height: 350px;
 }
 
 footer {
