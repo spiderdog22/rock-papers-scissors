@@ -41,7 +41,7 @@ const processRound = (evt) => {
         startButton.dispatchEvent(new Event('click'));
 };
 
-startButton.addEventListener('click', startButtonCallback);
+startButton.addEventListener('click', startButtonHandler);
 rockButton.addEventListener('click', processRound);
 paperButton.addEventListener('click', processRound);
 scissorsButton.addEventListener('click', processRound);
