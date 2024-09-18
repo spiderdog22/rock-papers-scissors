@@ -1,5 +1,3 @@
-console.log('Hello world!')
-
 let computerPoints = 0
 let humanPoints = 0
 
